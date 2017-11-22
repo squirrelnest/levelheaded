@@ -1,0 +1,7 @@
+<h1>Edit a restaurant</h1>
+<form action="<%= "/restaurants/#{@restaurant.id}" %>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <input type="text" name="restaurant[name]" id="name" placeholder="<%= @restaurant.name %>" />
+  <input type="text" name="restaurant[zipcode]" id="zipcode" placeholder="<%= @restaurant.zipcode %>" />
+  <input type="submit" id="Edit Restaurant" />
+</form>

@@ -1,0 +1,24 @@
+<h1>Edit table</h1>
+<form action="<%= "/tables/#{@table.id}" %>" method="post">
+
+  <input type="hidden" id="hidden" name="_method" value="patch">
+
+  <input type="text" name="table[name]" placeholder="<%= @table.name %>" id="table_name" />
+
+  <h2>User(s):</h2>
+  <% User.all.each do |user| %>
+    <input type="checkbox" name="table[user_ids][]" value="<%= user.id %>" id="<%= "user_#{user.id}" %>" <%= 'checked' if @table.users.include?(user) %> ><%= user.name %></input><br />
+  <% end %>
+
+  <input type="text" name="user[name]" placeholder="User Name" id="new_user"><br />
+
+  <h2>Restaurant:</h2>
+  <% Restaurant.all.each do |restaurant| %>
+    <input type="checkbox" name="table[restaurant_ids][]" value="<%= restaurant.id %>" id="<%= "restaurant_#{restaurant.id}" %>" <%= 'checked' if @table.restaurants.include?(restaurant) %> ><%= restaurant.name %></input><br />
+  <% end %>
+
+  <input type="text" name="restaurant[name]" placeholder="Restaurant Name" id="new_restaurant"><br />
+
+  <p><input type="submit" id="Edit Table" /></p>
+
+</form>
