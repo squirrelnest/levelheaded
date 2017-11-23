@@ -1,71 +1,78 @@
-landmarks_list = {
-    "Madison Square Guarden" => {
-      :year_completed => 1901
+chowtable_list = {
+    "1" => {
+      :type => "private"
     },
-    "The big bull outside" => {
-      :year_completed => 1995
+    "2" => {
+      :type => "booth"
     },
-    "Flatiron School" => {
-      :year_completed => 2014
+    "3" => {
+      :type => "communal"
     },
-    "Museum Mile" => {
-      :year_completed => 1058
-    },
-    "Subway Station" => {
-      :year_completed => 2015
-    },
-    "Cast Iron" => {
-      :year_completed => 1951
-    },
-    "Shea Stadium" => {
-      :year_completed => 1964
-    },
-    "Flatiron Building" => {
-      :year_completed => 1902
-    },
-    "Brooklyn Bridge" => {
-      :year_completed => 1883
+    "4" => {
+      :type => "outdoors"
     }
   }
 
-landmarks_list.each do |name, landmark_hash|
-  p = Landmark.new
-  p.name = name
-  landmark_hash.each do |attribute, value|
+chowtable_list.each do |name, chowtable_hash|
+  p = Chowtable.new
+  p.number = number
+  chowtable_hash.each do |attribute, value|
       p[attribute] = value
   end
   p.save
 end
 
-figure_list = {
-    "Billy The Kid" => {
+restaurant_list = {
+    "Comal" => {
+      :phone => 5109266300,
+      :address_hash => { street_address: "2020 Shattuck Ave", city: "Berkeley", state: "CA", zipcode: "94704" }
     },
-    "Mark Zuckerberg" => {
+    "Pompette" => {
+      :phone => 5103564737,
+      :address_hash => { street_address: "1782 Fourth St", city: "West Berkeley", state: "CA", zipcode: "94710" }
     },
-    "Ada Lovelace" => {
+    "Starbucks" => {
+      :phone => 5108436806,
+      :address_hash => { street_address: "2224 Shattuck Ave", city: "Berkeley", state: "CA", zipcode: "94704" }
     },
-    "Linus Torvalds" => { 
+    "Artis" => {
+      :phone => 510898-1104,
+      :address_hash => { street_address: "1717 Fourth St B", city: "Berkeley", state: "CA", zipcode: "94710" }
     }
   }
 
-figure_list.each do |name, figure_hash|
-  p = Figure.new
+restaurant_list.each do |name, restaurant_hash|
+  p = Restaurant.new
   p.name = name
+  restaurant_hash.each do |attribute, value|
+      p[attribute] = value
+  end
   p.save
 end
 
-
-title_list = {
-    "The Mayor" => {
+reviews_list = {
+    "table1_review" => {
+      content: "great view",
+      wobble: 5
     },
-    "The Don" => {
+    "table2_review" => {
+      content: "sticky surface",
+      wobble: 3
     },
-    "Mr. President" => {
+    "table3_review" => {
+      content: "plasticky",
+      wobble: 2
+    },
+    "table4_review" => {
+      content: "gave me splinters",
+      wobble: 1
     }
   }
 
-title_list.each do |name, figure_hash|
-  p = Title.new
-  p.name = name
+reviews_list.each do |name, review_hash|
+  p = Review.new
+  review_hash.each do |attribute, value|
+      p[attribute] = value
+  end
   p.save
 end

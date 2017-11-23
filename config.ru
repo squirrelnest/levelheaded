@@ -11,5 +11,6 @@ use Rack::MethodOverride
 use UsersController
 use TablesController
 use RestaurantsController
+use ReviewsController
 
 run ApplicationController
