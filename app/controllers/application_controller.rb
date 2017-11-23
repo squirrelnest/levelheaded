@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
   register Sinatra::Twitter::Bootstrap::Assets
 
   get '/' do
-    redirect '/tables'
+    redirect '/chowtables'
   end
 
 end

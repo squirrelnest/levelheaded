@@ -7,11 +7,11 @@ artis = Restaurant.create({name: "Artis", phone: 5108981104, :address_hash => { 
 
 # Create tables
 
-a = Chowtable.create({restaurant: comal, number: 81, type: "booth"})
-b = Chowtable.create({restaurant: pompette, number: 82, type: "communal"})
-c = Chowtable.create({restaurant: starbucks, number: 83, type: "private"})
-d = Chowtable.create({restaurant: artis, number: 84, type: "outdoor"})
-e = Chowtable.create({restaurant: comal, number: 85, type: "window"})
+a = Chowtable.create({restaurant: comal, number: 81, table_type: "booth"})
+b = Chowtable.create({restaurant: pompette, number: 82, table_type: "communal"})
+c = Chowtable.create({restaurant: starbucks, number: 83, table_type: "private"})
+d = Chowtable.create({restaurant: artis, number: 84, table_type: "outdoor"})
+e = Chowtable.create({restaurant: comal, number: 85, table_type: "window"})
 
 # Create users
 

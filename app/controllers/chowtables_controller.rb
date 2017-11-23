@@ -1,73 +1,73 @@
 class ChowtablesController < ApplicationController
 
-  get '/tables' do
-    @tables = Table.all
-    erb :'/tables/index'
+  get '/chowtables' do
+    @chowtables = Chowtable.all
+    erb :'/chowtables/index', layout: :'layouts/application'
   end
 
-  get '/tables/new' do
-    # @tables = Table.new <-- not necessary unless you are using data from Tables
-    erb :'/tables/new'
+  get '/chowtables/new' do
+    # @chowtables = Chowtable.new <-- not necessary unless you are using data from Chowtables
+    erb :'/chowtables/new'
   end
 
-  post '/tables/create' do
-    @table = Table.create(table_params)
+  post '/chowtables/create' do
+    @chowtable = Chowtable.create(chowtable_params)
     # save or create new title section
-    if params[:table][:title_ids]
-      params[:table][:title_ids].each do |title_id|
-        @table.titles << Title.find(title_id)
+    if params[:chowtable][:title_ids]
+      params[:chowtable][:title_ids].each do |title_id|
+        @chowtable.titles << Title.find(title_id)
       end
     end
-    @table.titles << Title.find_or_create_by!(name: params[:title][:name]) unless params[:title][:name].empty?
+    @chowtable.titles << Title.find_or_create_by!(name: params[:title][:name]) unless params[:title][:name].empty?
     # save or create new landmark section
-    if params[:table][:landmark_ids]
-      params[:table][:landmark_ids].each do |landmark_id|
-        @table.landmarks << Landmark.find(landmark_id)
+    if params[:chowtable][:landmark_ids]
+      params[:chowtable][:landmark_ids].each do |landmark_id|
+        @chowtable.landmarks << Landmark.find(landmark_id)
       end
     end
-    @table.landmarks << Landmark.find_or_create_by!(name: params[:landmark][:name]) unless params[:landmark][:name].empty?
+    @chowtable.landmarks << Landmark.find_or_create_by!(name: params[:landmark][:name]) unless params[:landmark][:name].empty?
     # save and redirect
-    @table.save
-    redirect :'/tables'
+    @chowtable.save
+    redirect :'/chowtables'
   end
 
-  get '/tables/:id' do
-    @table = Table.find(params[:id])
-    erb :'/tables/show'
+  get '/chowtables/:id' do
+    @chowtable = Chowtable.find(params[:id])
+    erb :'/chowtables/show'
   end
 
-  get '/tables/:id/edit' do
-    @table = Table.find(params[:id])
-    erb :'/tables/edit'
+  get '/chowtables/:id/edit' do
+    @chowtable = Chowtable.find(params[:id])
+    erb :'/chowtables/edit'
   end
 
-  patch '/tables/:id' do
-    @table = Table.find(params[:id])
-    @table = @table.update(table_params)
+  patch '/chowtables/:id' do
+    @chowtable = Chowtable.find(params[:id])
+    @chowtable = @chowtable.update(chowtable_params)
     # save or create new title section
-    if params[:table][:title_ids]
-      params[:table][:title_ids].each do |title_id|
-        @table.titles << Title.find(title_id)
+    if params[:chowtable][:title_ids]
+      params[:chowtable][:title_ids].each do |title_id|
+        @chowtable.titles << Title.find(title_id)
       end
     end
-    @table.titles << Title.find_or_create_by!(name: params[:title][:name]) unless params[:title][:name].empty?
+    @chowtable.titles << Title.find_or_create_by!(name: params[:title][:name]) unless params[:title][:name].empty?
     # save or create new landmark section
-    if params[:table][:landmark_ids]
-      params[:table][:landmark_ids].each do |landmark_id|
-        @table.landmarks << Landmark.find(landmark_id)
+    if params[:chowtable][:landmark_ids]
+      params[:chowtable][:landmark_ids].each do |landmark_id|
+        @chowtable.landmarks << Landmark.find(landmark_id)
       end
     end
-    @table.landmarks << Landmark.find_or_create_by!(name: params[:landmark][:name]) unless params[:landmark][:name].empty?
+    @chowtable.landmarks << Landmark.find_or_create_by!(name: params[:landmark][:name]) unless params[:landmark][:name].empty?
     # save and redirect
-    @table.save
-    redirect :"/tables/#{@table.id}"
+    @chowtable.save
+    redirect :"/chowtables/#{@chowtable.id}"
   end
 
   private
 
-  def table_params
-    {name: params[:table][:name]}
-    # {name: params[:table][:name], titles: params[table][title_ids][], landmarks: params[table][landmark_ids][]}
+  def chowtable_params
+    {name: params[:chowtable][:name]}
+    # {name: params[:chowtable][:name], titles: params[chowtable][title_ids][], landmarks: params[chowtable][landmark_ids][]}
   end
 
 end

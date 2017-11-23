@@ -15,7 +15,8 @@ ActiveRecord::Schema.define(version: 20171123022605) do
 
   create_table "chowtables", force: :cascade do |t|
     t.integer "number"
-    t.string  "type"
+    t.string  "table_type"
+    t.integer "restaurant_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -27,13 +28,17 @@ ActiveRecord::Schema.define(version: 20171123022605) do
   create_table "reviews", force: :cascade do |t|
     t.text     "content"
     t.integer  "wobble"
+    t.integer  "restaurant_id"
+    t.integer  "user_id"
+    t.integer  "chowtable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "password"
+    t.string  "name"
+    t.string  "password"
+    t.integer "restaurant_id"
   end
 
 end

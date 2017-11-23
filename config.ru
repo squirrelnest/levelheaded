@@ -9,7 +9,7 @@ end
 
 use Rack::MethodOverride
 use UsersController
-use TablesController
+use ChowtablesController
 use RestaurantsController
 use ReviewsController
 
