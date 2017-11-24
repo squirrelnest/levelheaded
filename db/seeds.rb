@@ -22,13 +22,13 @@ chris = User.create({name: "Chris", password: "Chris"})
 # Create reviews
 
 Review.create([
-  {content: "sticky", wobble: 0, restaurant: comal, user: alice, chowtable: a},
-  {content: "smelly", wobble: 1, restaurant: pompette, user: betty, chowtable: b},
-  {content: "sticky", wobble: 2, restaurant: starbucks, user: chris, chowtable: c},
-  {content: "smelly", wobble: 3, restaurant: artis, user: alice, chowtable: d},
-  {content: "sticky", wobble: 4, restaurant: artis, user: betty, chowtable: e},
-  {content: "smelly", wobble: 5, restaurant: comal, user: chris, chowtable: a},
-  {content: "sticky", wobble: 5, restaurant: pompette, user: alice, chowtable: b}
+  {content: "sticky surface", wobble: 0, restaurant: comal, user: alice, chowtable: a},
+  {content: "smells like teen spirit", wobble: 1, restaurant: pompette, user: betty, chowtable: b},
+  {content: "great view", wobble: 2, restaurant: starbucks, user: chris, chowtable: c},
+  {content: "ruddy hair all over", wobble: 3, restaurant: artis, user: alice, chowtable: d},
+  {content: "earthquaaaaaake!", wobble: 4, restaurant: artis, user: betty, chowtable: e},
+  {content: "missing a leg", wobble: 5, restaurant: comal, user: chris, chowtable: a},
+  {content: "rock solid", wobble: 5, restaurant: pompette, user: alice, chowtable: b}
 ])
 
 
