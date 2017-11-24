@@ -1,40 +1,40 @@
 class ReviewsController < ApplicationController
 
-  get '/restaurants' do
-    @restaurants = Restaurant.all
-    erb :'/restaurants/index'
+  get '/reviews' do
+    @reviews = Review.all
+    erb :'/reviews/index', layout: :'/_layouts/layout'
   end
 
-  get '/restaurants/new' do
-    erb :'/restaurants/new'
+  get '/reviews/new' do
+    erb :'/reviews/new'
   end
 
-  post '/restaurants/create' do
-    @restaurant = Restaurant.create(restaurant_params)
-    @restaurant.save
-    redirect "/restaurants/#{@restaurant.id}"
+  post '/reviews/create' do
+    @review = Review.create(review_params)
+    @review.save
+    redirect "/reviews/#{@review.id}"
   end
 
-  get '/restaurants/:id' do
-    @restaurant = Restaurant.find(params[:id])
-    erb :'/restaurants/show'
+  get '/reviews/:id' do
+    @review = Review.find(params[:id])
+    erb :'/reviews/show'
   end
 
-  get '/restaurants/:id/edit' do
-    @restaurant = Restaurant.find(params[:id])
-    erb :'/restaurants/edit'
+  get '/reviews/:id/edit' do
+    @review = Review.find(params[:id])
+    erb :'/reviews/edit'
   end
 
-  patch '/restaurants/:id' do
-    @restaurant = Restaurant.find(params[:id])
-    @restaurant.update(restaurant_params)
-    redirect "/restaurants/#{@restaurant.id}"
+  patch '/reviews/:id' do
+    @review = Review.find(params[:id])
+    @review.update(review_params)
+    redirect "/reviews/#{@review.id}"
   end
 
   private
 
-  def restaurant_params
-    {name: params[:restaurant][:name], year_completed: params[:restaurant][:year_completed]}
+  def review_params
+    {name: params[:review][:name], year_completed: params[:review][:year_completed]}
   end
 
 end

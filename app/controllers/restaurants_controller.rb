@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
 
   get '/restaurants' do
     @restaurants = Restaurant.all
-    erb :'/restaurants/index'
+    erb :'/restaurants/index', layout: :'/_layouts/layout'
   end
 
   get '/restaurants/new' do
