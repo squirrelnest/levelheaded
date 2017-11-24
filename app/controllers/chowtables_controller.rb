@@ -2,7 +2,7 @@ class ChowtablesController < ApplicationController
 
   get '/chowtables' do
     @chowtables = Chowtable.all
-    erb :'/chowtables/index', layout: :'layouts/application'
+    erb :'/chowtables/index', layout: :'/layouts/layout'
   end
 
   get '/chowtables/new' do
