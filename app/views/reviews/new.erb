@@ -3,25 +3,19 @@
 
   <form action="/reviews/create" method="post">
 
-    <p>
-    Select restaurant:
-
-    <select name="restaurant_name">
-    <% Restaurant.all.each do |restaurant| %>
-      <option value="<%= restaurant.id %>" id="<%= "#{restaurant.id}" %>" ><%= restaurant.name %></option>
-    <% end %>
-    </select>
+    <p><h5>Select existing table:</h5>
+      <select name="table_number" id="<%= "select_chowtable" %>">
+        <option label=" "></option>
+        <% Chowtable.all.each do |chowtable| %>
+          <option value="<%= chowtable.id %>" id="<%= "#{chowtable.id}" %>" ><%= chowtable.restaurant.name if chowtable.restaurant %> <%= chowtable.number %></option>
+        <% end %>
+      </select>
     </p>
 
-    <p>Or create new restaurant:</p>
+    <p><h5>Or add new table:</h5></p>
 
-    Restaurant Name: <input type="text" name="restaurant_name" /><br />
-    Restaurant Phone: <input type="text" name="restaurant_phone" /><br />
-    Restaurant Address: <input type="text" name="street_address" placeholder="street address" /><input type="text" name="city" placeholder="city" /><input type="text" name="state" placeholder="state" /><input type="text" name="zipcode" placeholder="zipcode" /><br />
+    Table Number: <input type="text" name="table_number"></input><br />
 
-    <p>Create new table:</p>
-
-    Table Number: <input type="text" name="table_number" /><br />
     Table Type:
     <select name="table_type">
       <option value="booth">booth</option>
@@ -31,7 +25,23 @@
       <option value="outdoors">outdoors</option>
     </select>
 
-    <p>Your review:</p>
+    <p>
+    Select restaurant:
+    <select name="restaurant_name" id="select_restaurant">
+      <option label=" "></option>
+      <% Restaurant.all.each do |restaurant| %>
+        <option value="<%= restaurant.id %>" id="<%= "#{restaurant.id}" %>" ><%= restaurant.name %></option>
+      <% end %>
+    </select>
+    </p>
+
+    <p>Create new restaurant:</p>
+
+    Restaurant Name: <input type="text" name="restaurant_name" /><br />
+    Restaurant Phone: <input type="text" name="restaurant_phone" /><br />
+    Restaurant Address: <input type="text" name="street_address" placeholder="street address" /><input type="text" name="city" placeholder="city" /><input type="text" name="state" placeholder="state" /><input type="text" name="zipcode" placeholder="zipcode" /><br />
+
+    <p><h5>Your review:</h5></p>
 
     Wobbliness: <input type="text" name="wobble" /><br />
     Content: <input type="text" name="content" /><br />
