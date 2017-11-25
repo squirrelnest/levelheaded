@@ -2,11 +2,11 @@ class RestaurantsController < ApplicationController
 
   get '/restaurants' do
     @restaurants = Restaurant.all
-    erb :'/restaurants/index', layout: :'/_layouts/layout'
+    erb :'/restaurants/index'
   end
 
   get '/restaurants/new' do
-    erb :'/restaurants/new', layout: :'/_layouts/layout'
+    erb :'/restaurants/new'
   end
 
   post '/restaurants/create' do
@@ -17,12 +17,12 @@ class RestaurantsController < ApplicationController
 
   get '/restaurants/:id' do
     @restaurant = Restaurant.find(params[:id])
-    erb :'/restaurants/show', layout: :'/_layouts/layout'
+    erb :'/restaurants/show'
   end
 
   get '/restaurants/:id/edit' do
     @restaurant = Restaurant.find(params[:id])
-    erb :'/restaurants/edit', layout: :'/_layouts/layout'
+    erb :'/restaurants/edit'
   end
 
   patch '/restaurants/:id' do

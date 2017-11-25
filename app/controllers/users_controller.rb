@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/users' do
     @users = User.all
-    erb :'/users/index', layout: :'/_layouts/layout'
+    erb :'/users/index'
   end
 
   get '/users/new' do

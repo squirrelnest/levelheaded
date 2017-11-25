@@ -2,11 +2,11 @@ class ReviewsController < ApplicationController
 
   get '/reviews' do
     @reviews = Review.all
-    erb :'/reviews/index', layout: :'/_layouts/layout'
+    erb :'/reviews/index'
   end
 
   get '/reviews/new' do
-    erb :'/reviews/new', layout: :'/_layouts/layout'
+    erb :'/reviews/new'
   end
 
   post '/reviews/create' do
@@ -16,17 +16,17 @@ class ReviewsController < ApplicationController
     @chowtable = Chowtable.find_or_create_by(chowtable_params)
     @review.chowtable = @chowtable
     @review.save
-    redirect "/reviews/#{@review.id}"
+    redirect "/reviews"
   end
 
   # get '/reviews/:id' do
   #   @review = Review.find(params[:id])
-  #   erb :'/reviews/show', layout: :'/_layouts/layout'
+  #   erb :'/reviews/show'
   # end
 
   get '/reviews/:id/edit' do
     @review = Review.find(params[:id])
-    erb :'/reviews/edit', layout: :'/_layouts/layout'
+    erb :'/reviews/edit'
   end
 
   patch '/reviews/:id' do
@@ -38,15 +38,15 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    {content: params[:content], wobble: params[:wobble], table_type: params[:table_type]}
+    {content: params[:content], wobble: params[:wobble].to_i}
   end
 
   def restaurant_params
-    {name: params[:restaurant_name], phone: params[:restaurant_phone], address_hash: params[:address][]}
+    {name: params[:restaurant_name], phone: params[:restaurant_phone].to_i, address_hash: Marshal.dump(params[:address])}
   end
 
   def chowtable_params
-    {number: params[:table]}
+    {number: params[:table], table_type: params[:table_type]}
   end
 
 end
