@@ -3,13 +3,15 @@
 
   <form action="/reviews/create" method="post">
 
-    <p>Select restaurant:</p>
+    <p>
+    Select restaurant:
 
-    <select name="restaurant_name[]">
+    <select name="restaurant_name">
     <% Restaurant.all.each do |restaurant| %>
       <option value="<%= restaurant.id %>" id="<%= "#{restaurant.id}" %>" ><%= restaurant.name %></option>
     <% end %>
     </select>
+    </p>
 
     <p>Or create new restaurant:</p>
 
@@ -20,7 +22,14 @@
     <p>Create new table:</p>
 
     Table Number: <input type="text" name="table_number" /><br />
-    Table Type: <input type="text" name="table_type" /><br />
+    Table Type:
+    <select name="table_type">
+      <option value="booth">booth</option>
+      <option value="communal">communal</option>
+      <option value="private">private</option>
+      <option value="window">window</option>
+      <option value="outdoors">outdoors</option>
+    </select>
 
     <p>Your review:</p>
 
