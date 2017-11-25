@@ -40,7 +40,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    {name: params[:restaurant][:name], address_hash: params[:address], phone: params[:phone]}
+    {name: params[:restaurant_name], phone: params[:restaurant_phone], street_address: params[:street_address], city: params[:city], state: params[:state], zipcode: params[:zipcode]}
   end
 
 end

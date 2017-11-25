@@ -11,8 +11,8 @@
 <div class="reviews">Reviews:
   <% @chowtable.reviews.each do |review| %>
     <p>
-    <% if review.wobble = 0 %>
-      Asbolutely zero wobble!<br />
+    <% if review.wobble == 0 %>
+      Absolutely zero wobble!<br />
     <% else %>
       <% review.wobble.times do %><%= '*' %><% end %><br />
     <% end %>

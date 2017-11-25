@@ -17,6 +17,9 @@ class ReviewsController < ApplicationController
     @chowtable = Chowtable.find_or_create_by(chowtable_params)
     @chowtable.restaurant = @restaurant
     @review.chowtable = @chowtable
+    # change from (name: params[:user_name]) to (session[:user_id]) when authentication is implemented
+    @user = User.find_or_create_by(name: params[:user_name])
+    @review.user = @user
     @review.save
     redirect "/reviews"
   end
@@ -50,11 +53,15 @@ class ReviewsController < ApplicationController
   end
 
   def restaurant_params
-    {name: params[:restaurant_name], phone: params[:restaurant_phone].to_i, address_hash: Marshal.dump(params[:address])}
+    {name: params[:restaurant_name], phone: params[:restaurant_phone], street_address: params[:street_address], city: params[:city], state: params[:state], zipcode: params[:zipcode]}
   end
 
   def chowtable_params
     {number: params[:table], table_type: params[:table_type]}
+  end
+
+  def user_params
+    {name: params[:user_name]}
   end
 
 end
