@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     @restaurant = Restaurant.find_or_create_by(restaurant_params)
     @review.restaurant = @restaurant
     @chowtable = Chowtable.find_or_create_by(chowtable_params)
-    @review.table = @table
+    @review.chowtable = @chowtable
     @review.save
     redirect "/reviews/#{@review.id}"
   end
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    {content: params[:content], wobble: params[:wobble]}
+    {content: params[:content], wobble: params[:wobble], table_type: params[:table_type]}
   end
 
   def restaurant_params
