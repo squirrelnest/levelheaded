@@ -20,6 +20,9 @@ class ReviewsController < ApplicationController
     # change from (name: params[:user_name]) to (session[:user_id]) when authentication is implemented
     @user = User.find_or_create_by(name: params[:user_name])
     @review.user = @user
+    @restaurant.save
+    @chowtable.save
+    @user.save
     @review.save
     redirect "/reviews"
   end
@@ -42,7 +45,7 @@ class ReviewsController < ApplicationController
 
   get '/reviews/:id/delete' do
     @review = Review.find(params[:id])
-    @review.delete
+    @review.delete_all
     redirect '/reviews'
   end
 
@@ -57,7 +60,7 @@ class ReviewsController < ApplicationController
   end
 
   def chowtable_params
-    {number: params[:table], table_type: params[:table_type]}
+    {number: params[:table_number], table_type: params[:table_type]}
   end
 
   def user_params
