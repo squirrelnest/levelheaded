@@ -1,9 +1,9 @@
 # Create restaurants
 
-comal = Restaurant.create({name: "Comal", phone: 5109266300, :address_hash => { street_address: "2020 Shattuck Ave", city: "Berkeley", state: "CA", zipcode: "94704" } })
-pompette = Restaurant.create({name: "Pompette", phone: 5103564737, :address_hash => { street_address: "1782 Fourth St", city: "West Berkeley", state: "CA", zipcode: "94710" } })
-starbucks = Restaurant.create({name: "Starbucks", phone: 5108436806, :address_hash => { street_address: "2224 Shattuck Ave", city: "Berkeley", state: "CA", zipcode: "94704" } })
-artis = Restaurant.create({name: "Artis", phone: 5108981104, :address_hash => { street_address: "1717 Fourth St B", city: "Berkeley", state: "CA", zipcode: "94710" } })
+comal = Restaurant.create({name: "Comal", phone: 5109266300, street_address: "2020 Shattuck Ave", city: "Berkeley", state: "CA", zipcode: "94704" })
+pompette = Restaurant.create({name: "Pompette", phone: 5103564737, street_address: "1782 Fourth St", city: "West Berkeley", state: "CA", zipcode: "94710" })
+starbucks = Restaurant.create({name: "Starbucks", phone: 5108436806, street_address: "2224 Shattuck Ave", city: "Berkeley", state: "CA", zipcode: "94704" })
+artis = Restaurant.create({name: "Artis", phone: 5108981104, street_address: "1717 Fourth St B", city: "Berkeley", state: "CA", zipcode: "94710" })
 
 # Create tables
 
@@ -26,8 +26,8 @@ Review.create([
   {content: "smells like teen spirit", wobble: 1, restaurant: pompette, user: betty, chowtable: b},
   {content: "great view", wobble: 2, restaurant: starbucks, user: chris, chowtable: c},
   {content: "ruddy hair all over", wobble: 3, restaurant: artis, user: alice, chowtable: d},
-  {content: "earthquaaaaaake!", wobble: 4, restaurant: artis, user: betty, chowtable: e},
-  {content: "missing a leg", wobble: 5, restaurant: comal, user: chris, chowtable: a},
+  {content: "earthquaaaaaake!", wobble: 4, restaurant: artis, user: betty, chowtable: d},
+  {content: "missing a leg", wobble: 5, restaurant: comal, user: chris, chowtable: e},
   {content: "rock solid", wobble: 5, restaurant: pompette, user: alice, chowtable: b}
 ])
 

@@ -4,8 +4,8 @@
 
 <p>Overall wobbliness: <%= @restaurant.wobbliness %></p>
 
-<p><%= @restaurant.address_hash[:street_address] %><br />
-<%= @restaurant.address_hash[:city] %>, <%= @restaurant.address_hash[:state] %>  <%= @restaurant.address_hash[:zipcode] %></p>
+<p><%= @restaurant.street_address %><br />
+<%= @restaurant.city %>, <%= @restaurant.state %>  <%= @restaurant.zipcode %></p>
 
 <p><%= @restaurant.formatted_phone(@restaurant.phone) %></p>
 

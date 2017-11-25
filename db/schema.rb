@@ -21,8 +21,11 @@ ActiveRecord::Schema.define(version: 20171123022605) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string  "name"
-    t.integer "phone",        limit: 8
-    t.text    "address_hash"
+    t.integer "phone",          limit: 8
+    t.string  "street_address"
+    t.string  "city"
+    t.string  "state"
+    t.string  "zipcode"
   end
 
   create_table "reviews", force: :cascade do |t|

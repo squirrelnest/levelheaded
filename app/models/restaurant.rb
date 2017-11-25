@@ -1,7 +1,5 @@
 class Restaurant < ActiveRecord::Base
 
-  serialize :address_hash
-
   has_many :chowtables
   has_many :users
 
