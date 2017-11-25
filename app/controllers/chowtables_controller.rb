@@ -6,7 +6,6 @@ class ChowtablesController < ApplicationController
   end
 
   get '/chowtables/new' do
-    # @chowtables = Chowtable.new <-- not necessary unless you are using data from Chowtables
     erb :'/chowtables/new'
   end
 
