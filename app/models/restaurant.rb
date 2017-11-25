@@ -7,6 +7,22 @@ class Restaurant < ActiveRecord::Base
 
   validates :phone, uniqueness: true
 
+  def wobbliness
+    sum = 0
+    divisor = 0
+    self.chowtables.each do |table|
+      table.reviews.each do |review|
+        sum += review.wobble
+        divisor += 1
+      end
+    end
+    sum / divisor
+  end
+
+  def formatted_phone(phone)
+    "(" + phone.to_s[0..2] + ") " + phone.to_s[3..5] + "-" + phone.to_s[6..9]
+  end
+
   # validate :street_address_is_unique
   #
   # private
