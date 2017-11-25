@@ -6,7 +6,7 @@ class ChowtablesController < ApplicationController
   end
 
   get '/chowtables/new' do
-    erb :'/chowtables/new'
+    erb :'/chowtables/new', layout: :'/_layouts/layout'
   end
 
   post '/chowtables/create' do
@@ -32,12 +32,12 @@ class ChowtablesController < ApplicationController
 
   get '/chowtables/:id' do
     @chowtable = Chowtable.find(params[:id])
-    erb :'/chowtables/show'
+    erb :'/chowtables/show', layout: :'/_layouts/layout'
   end
 
   get '/chowtables/:id/edit' do
     @chowtable = Chowtable.find(params[:id])
-    erb :'/chowtables/edit'
+    erb :'/chowtables/edit', layout: :'/_layouts/layout'
   end
 
   patch '/chowtables/:id' do

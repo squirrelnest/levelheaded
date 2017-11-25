@@ -6,35 +6,47 @@ class ReviewsController < ApplicationController
   end
 
   get '/reviews/new' do
-    erb :'/reviews/new'
+    erb :'/reviews/new', layout: :'/_layouts/layout'
   end
 
   post '/reviews/create' do
     @review = Review.create(review_params)
+    @restaurant = Restaurant.find_or_create_by(restaurant_params)
+    @review.restaurant = @restaurant
+    @chowtable = Chowtable.find_or_create_by(chowtable_params)
+    @review.table = @table
     @review.save
     redirect "/reviews/#{@review.id}"
   end
 
-  get '/reviews/:id' do
-    @review = Review.find(params[:id])
-    erb :'/reviews/show'
-  end
+  # get '/reviews/:id' do
+  #   @review = Review.find(params[:id])
+  #   erb :'/reviews/show', layout: :'/_layouts/layout'
+  # end
 
   get '/reviews/:id/edit' do
     @review = Review.find(params[:id])
-    erb :'/reviews/edit'
+    erb :'/reviews/edit', layout: :'/_layouts/layout'
   end
 
   patch '/reviews/:id' do
     @review = Review.find(params[:id])
     @review.update(review_params)
-    redirect "/reviews/#{@review.id}"
+    redirect "/reviews"
   end
 
   private
 
   def review_params
-    {name: params[:review][:name], year_completed: params[:review][:year_completed]}
+    {content: params[:content], wobble: params[:wobble]}
+  end
+
+  def restaurant_params
+    {name: params[:restaurant_name], phone: params[:restaurant_phone], address_hash: params[:address][]}
+  end
+
+  def chowtable_params
+    {number: params[:table]}
   end
 
 end

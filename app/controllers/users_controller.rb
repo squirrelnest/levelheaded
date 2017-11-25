@@ -1,40 +1,40 @@
 class UsersController < ApplicationController
 
-  get '/restaurants' do
-    @restaurants = Restaurant.all
-    erb :'/restaurants/index', layout: :'/_layouts/layout'
+  get '/users' do
+    @users = User.all
+    erb :'/users/index', layout: :'/_layouts/layout'
   end
 
-  get '/restaurants/new' do
-    erb :'/restaurants/new'
+  get '/users/new' do
+    erb :'/users/new'
   end
 
-  post '/restaurants/create' do
-    @restaurant = Restaurant.create(restaurant_params)
-    @restaurant.save
-    redirect "/restaurants/#{@restaurant.id}"
+  post '/users/create' do
+    @user = User.create(user_params)
+    @user.save
+    redirect "/users/#{@user.id}"
   end
 
-  get '/restaurants/:id' do
-    @restaurant = Restaurant.find(params[:id])
-    erb :'/restaurants/show'
+  get '/users/:id' do
+    @user = User.find(params[:id])
+    erb :'/users/show'
   end
 
-  get '/restaurants/:id/edit' do
-    @restaurant = Restaurant.find(params[:id])
-    erb :'/restaurants/edit'
+  get '/users/:id/edit' do
+    @user = User.find(params[:id])
+    erb :'/users/edit'
   end
 
-  patch '/restaurants/:id' do
-    @restaurant = Restaurant.find(params[:id])
-    @restaurant.update(restaurant_params)
-    redirect "/restaurants/#{@restaurant.id}"
+  patch '/users/:id' do
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect "/users/#{@user.id}"
   end
 
   private
 
-  def restaurant_params
-    {name: params[:restaurant][:name], year_completed: params[:restaurant][:year_completed]}
+  def user_params
+    {name: params[:user][:name], year_completed: params[:user][:year_completed]}
   end
 
 end

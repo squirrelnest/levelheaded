@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
   end
 
   get '/restaurants/new' do
-    erb :'/restaurants/new'
+    erb :'/restaurants/new', layout: :'/_layouts/layout'
   end
 
   post '/restaurants/create' do
@@ -17,12 +17,12 @@ class RestaurantsController < ApplicationController
 
   get '/restaurants/:id' do
     @restaurant = Restaurant.find(params[:id])
-    erb :'/restaurants/show'
+    erb :'/restaurants/show', layout: :'/_layouts/layout'
   end
 
   get '/restaurants/:id/edit' do
     @restaurant = Restaurant.find(params[:id])
-    erb :'/restaurants/edit'
+    erb :'/restaurants/edit', layout: :'/_layouts/layout'
   end
 
   patch '/restaurants/:id' do
