@@ -11,9 +11,11 @@ class ReviewsController < ApplicationController
 
   post '/reviews/create' do
     @review = Review.create(review_params)
-    @restaurant = Restaurant.find_or_create_by(restaurant_params)
+    @restaurant = Restaurant.find_by(phone: restaurant_params[:phone])
+    @restaurant ||= Restaurant.create(restaurant_params)
     @review.restaurant = @restaurant
     @chowtable = Chowtable.find_or_create_by(chowtable_params)
+    @chowtable.restaurant = @restaurant
     @review.chowtable = @chowtable
     @review.save
     redirect "/reviews"
@@ -33,6 +35,12 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.update(review_params)
     redirect "/reviews"
+  end
+
+  get '/reviews/:id/delete' do
+    @review = Review.find(params[:id])
+    @review.delete
+    redirect '/reviews'
   end
 
   private

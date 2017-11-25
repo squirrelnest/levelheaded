@@ -9,6 +9,12 @@ class ChowtablesController < ApplicationController
     erb :'/chowtables/new'
   end
 
+  get '/chowtables/:id/delete' do
+    @chowtable = Chowtable.find(params[:id])
+    @chowtable.delete
+    redirect '/chowtables'
+  end
+
   post '/chowtables/create' do
     @chowtable = Chowtable.create(chowtable_params)
     # save or create new title section

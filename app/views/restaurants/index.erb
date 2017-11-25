@@ -1,5 +1,5 @@
 <ul>
   <% @restaurants.each do |restaurant| %>
-    <li><%= restaurant.name %> (Zipcode: )</li>
+    <li><%= restaurant.name %> (Wobbliness: <%= restaurant.wobbliness %>) <a href="<%= "/restaurants/#{restaurant.id}/delete"%>"><button>Delete</button></a></li>
   <% end %>
 </ul>

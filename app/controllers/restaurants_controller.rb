@@ -31,6 +31,12 @@ class RestaurantsController < ApplicationController
     redirect "/restaurants/#{@restaurant.id}"
   end
 
+  get '/restaurants/:id/delete' do
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.delete_all
+    redirect "/restaurants"
+  end
+
   private
 
   def restaurant_params
