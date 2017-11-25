@@ -1,0 +1,13 @@
+<div>
+  <h1><%= @review.restaurant.name %> | Table # <%= @review.chowtable.number %></h1>
+  <form action="<%= "/reviews/#{@review.id}" %>" method="post">
+    <input type="hidden" id="hidden" name="_method" value="patch" />
+
+    Wobbliness: <input type="text" name="wobble" placeholder=<%= @review.wobble %> /><br />
+    Content: <input type="text" name="content" placeholder="<%= @review.content %>" /><br />
+    <p>- <%= @review.user.name %> | Reviewed <%= @review.updated_at.strftime('%B %e, %Y') %></p>
+
+    <input type="submit" name="Edit Review" />
+
+  </form>
+</div>

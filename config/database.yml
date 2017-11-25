@@ -1,0 +1,9 @@
+development:
+  adapter: sqlite3
+  encoding: unicode
+  database: test
+  pool: 5
+  username: admin
+  password: admin
+  port: 5433
+  host: localhost

@@ -1,0 +1,5 @@
+<% @chowtables.each do |chowtable| %>
+  <% if chowtable.restaurant %>
+    <a href="<%= "/chowtables/#{chowtable.id}" %>"><%= chowtable.restaurant.name %> | Table number: <%= chowtable.number %></a> | Wobbliness: <%= chowtable.average %> | <a href="<%= "/chowtables/#{chowtable.id}/delete" %>"><button>Delete</button></a> <br />
+  <% end %>
+<% end %>
