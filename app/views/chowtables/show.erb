@@ -20,6 +20,35 @@
     - <%= review.user.name %> | Reviewed <%= review.created_at.strftime('%B %e, %Y') %>
     </p>
   <% end %>
+
+  <!-- # Add Review  -->
+  <input type="button" value="Add Review" id="reveal" onClick="reveal();" />
+
+  <div id="form" style="display:none;">
+    <form action="/reviews/new" method="get">
+    <p><h5>Your review:</h5></p>
+
+    Wobbliness: <input type="text" name="wobble" /><br />
+    Content: <input type="text" name="content" /><br />
+    User: <input type="text" name="user_name" /><br />
+
+    <p><input type="submit" value="Submit Review" /></p>
+    </form>
+  </div>
+
 </div>
 
 </div>
+
+<script>
+
+function reveal() {
+    var x = document.getElementById("form");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+</script>
