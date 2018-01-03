@@ -1,47 +1,55 @@
 <div>
-<h1><%= @chowtable.restaurant.name %> | Table # <%= @chowtable.number %></h1>
-<p>Wobbliness (average): <%= @chowtable.average if @chowtable.average %></p>
-<p>Table Type: <%= @chowtable.table_type%></p>
-<p>Phone: <%= @chowtable.restaurant.formatted_phone(@chowtable.restaurant.phone) %></p>
-<p>Address:<br />
-<%= @chowtable.restaurant.street_address %><br />
-<%= @chowtable.restaurant.city %>, <%= @chowtable.restaurant.state %>  <%= @chowtable.restaurant.zipcode %><br />
-</p>
-
-<div class="reviews">Reviews:
-  <% @chowtable.reviews.each do |review| %>
-    <p>
-    <% if review.wobble == 0 %>
-      Absolutely zero wobble!<br />
-    <% else %>
-      <% review.wobble.times do %><%= '*' %><% end %><br />
-    <% end %>
-    "<%= review.content %>"<br />
-    - <%= review.user.name %> | Reviewed <%= review.created_at.strftime('%B %e, %Y') %>
+  <h1><%= @chowtable.restaurant.name %> | Table # <%= @chowtable.number %></h1>
+    <p>Wobbliness (average): <%= @chowtable.average if @chowtable.average %></p>
+    <p>Table Type: <%= @chowtable.table_type%></p>
+    <p>Phone: <%= @chowtable.restaurant.formatted_phone(@chowtable.restaurant.phone) %></p>
+    <p>Address:<br />
+    <%= @chowtable.restaurant.street_address %><br />
+    <%= @chowtable.restaurant.city %>, <%= @chowtable.restaurant.state %>  <%= @chowtable.restaurant.zipcode %><br />
     </p>
-  <% end %>
 
-  <!-- # Add Review  -->
-  <input type="button" value="Add Review" id="reveal" onClick="reveal();" />
+  <!-- Existing Reviews -->
 
-  <div id="form" style="display:none;">
-    <form action="/reviews/new" method="get">
-    <p><h5>Your review:</h5></p>
+  <div class="reviews">Reviews:
+    <% @chowtable.reviews.each do |review| %>
+      <p>
+      <% if review.wobble == 0 %>
+        Absolutely zero wobble!<br />
+      <% else %>
+        <% review.wobble.times do %><%= '*' %><% end %><br />
+      <% end %>
+      "<%= review.content %>"<br />
+      - <%= review.user.name %> | Reviewed <%= review.created_at.strftime('%B %e, %Y') %>
+      </p>
+    <% end %>
+  </div>
 
-    Wobbliness: <input type="text" name="wobble" /><br />
-    Content: <input type="text" name="content" /><br />
-    User: <input type="text" name="user_name" /><br />
+  <!-- Add Review  -->
 
-    <p><input type="submit" value="Submit Review" /></p>
-    </form>
+  <div>
+
+    <input type="button" value="Add Review" id="reveal" onClick="reveal();" />
+
+    <div id="form" style="display:none;">
+      <form action="/reviews/create" method="post">
+      <p><h5>Your review:</h5></p>
+      <input type="hidden" name="restaurant_phone" value="<%= @chowtable.restaurant.phone %>" />
+      <input type="hidden" name="table_number" value="<%= @chowtable.number %>" />
+      <input type="hidden" name="table_type" value="<%= @chowtable.table_type %>" />
+
+      Wobbliness: <input type="text" name="wobble" /><br />
+      Content: <input type="text" name="content" /><br />
+      User: <input type="text" name="user_name" /><br />
+
+      <p><input type="submit" value="Submit Review" /></p>
+      </form>
+    </div>
+
   </div>
 
 </div>
 
-</div>
-
 <script>
-
 function reveal() {
     var x = document.getElementById("form");
     if (x.style.display === "none") {
@@ -50,5 +58,4 @@ function reveal() {
         x.style.display = "none";
     }
 }
-
 </script>
