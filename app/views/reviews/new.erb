@@ -6,7 +6,7 @@
     <p><h5>Select existing table:</h5>
       <select name="table_number" id="<%= "select_chowtable" %>">
         <option label=" "></option>
-        <% Chowtable.all.each do |chowtable| %>
+        <% Chowtable.order('restaurant_id').each do |chowtable| %>
           <option value="<%= chowtable.id %>" id="<%= "#{chowtable.id}" %>" ><%= chowtable.restaurant.name if chowtable.restaurant %> <%= chowtable.number %></option>
         <% end %>
       </select>
