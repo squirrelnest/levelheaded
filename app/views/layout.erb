@@ -16,25 +16,29 @@
   </head>
 
   <body>
+
     <div class="header">
       <span><h1 style="display: inline;">Levelheaded</h1><h2 style="display: inline;"> (the review site for wobbly restaurant tables)</h2></span>
       <p><a href="/restaurants">RESTAURANTS</a>
         | <a href="/chowtables">TABLES</a>
-        | <a href="/reviews/new">ADD REVIEW</a>
-        | <a href="/users/reviews">YOUR REVIEWS</a>
-        | <% if session[:id] %>
-            <a href="/users/logout">LOGOUT</a>
-          <% else %>
-            <a href="/users/home">LOGIN</a>
-          <% end %>
+        <% if session[:id] %>
+          | <a href="/reviews/new">ADD REVIEW</a> | <a href="/users/reviews">YOUR REVIEWS</a> | <a href="/users/logout">LOGOUT</a>
+        <% else %>
+          | <a href="/users/login">LOGIN</a>
+        <% end %>
       </p>
       <hr>
     </div>
     <br />
 
+    <% if flash.has?(:message) %>
+      <div class="message" style="color:red;"><%= flash[:message] %></div><br />
+    <% end %>
+
     <div class="wrapper">
       <%= yield %>
     </div>
+
   </body>
 
 </html>

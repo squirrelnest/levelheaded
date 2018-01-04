@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rack-flash3'
 gem 'bcrypt'
 gem 'sinatra-flash'
 gem 'activerecord', '4.2.7.1', :require => 'active_record'

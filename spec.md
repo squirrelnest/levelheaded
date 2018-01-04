@@ -6,7 +6,7 @@ Specs:
 - [x] Include more than one model class (list of model class names e.g. User, Post, Category)
 - [x] Include at least one has_many relationship (x has_many y e.g. User has_many Posts)
 - [x] Include user accounts
-- [ ] Ensure that users can't modify content created by other users
+- [x] Ensure that users can't modify content created by other users
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
 - [x] Include user input validations
 - [ ] Display validation failures to user with error message (example form URL e.g. /posts/new)
@@ -24,7 +24,7 @@ To Do
 - [x] Clean up database to remove restaurant_id from users table
 - [x] Clean up database to remove invalid users (users without passwords or real, non-number names)
 - [ ] Add error messages
-- [ ] Validate: users have passwords and real, non-number names
+- [x] Validate: users have passwords and real, non-number names
 
 Nice to Have
 - [ ] Security: Hash passwords

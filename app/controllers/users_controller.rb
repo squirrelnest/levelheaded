@@ -15,12 +15,12 @@ class UsersController < ApplicationController
         session[:id] = @user.id
         redirect '/users/reviews'
     else
-        redirect '/failure'
+        flash[:message] = "Invalid username and/or password"
+        redirect '/users/signup'
     end
   end
 
   get '/users/reviews' do
-    @user = User.find(session[:id])
     erb :'/users/reviews'
   end
 
@@ -34,14 +34,15 @@ class UsersController < ApplicationController
       session[:id] = @user.id
       redirect '/users/reviews'
     else
-      redirect '/failure'
+      flash[:message] = "Invalid username and/or password"
+      redirect '/users/login'
     end
   end
 
   get '/users/logout' do
     session.clear
     session[:id] = nil
-    erb :'users/logout'
+    flash[:message] = "You have logged out."
     redirect '/users/home'
   end
 
