@@ -1,11 +1,19 @@
 class UsersController < ApplicationController
 
   get '/users/home' do
+    @user = User.find(session[:id])
     erb :'/users/home'
   end
 
   get '/users/signup' do
     erb :'/users/signup'
+  end
+
+  post '/users/registration' do
+    @user = User.new(name: params["username"], password: params["password"])
+    @user.save
+    session[:id] = @user.id
+    redirect '/users/home'
   end
 
   get '/users/login' do
