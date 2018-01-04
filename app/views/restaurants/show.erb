@@ -17,6 +17,49 @@
   </ul>
 </p>
 
-<a href="/reviews/new"><button>Add table</button></a>
+<!-- Add Table  -->
+
+<div>
+
+  <input type="button" value="Add Table" id="reveal" onClick="reveal();" />
+
+  <div id="form" style="display:none;">
+    <form action="/reviews/create" method="post">
+
+    <p><h5>New Table:</h5></p>
+    <input type="hidden" name="restaurant_phone" value="<%= @restaurant.phone %>" />
+    Table number: <input type="text" name="table_number" />
+    Table type:
+      <select name="table_type">
+        <option value="booth">booth</option>
+        <option value="communal">communal</option>
+        <option value="private">private</option>
+        <option value="window">window</option>
+        <option value="outdoors">outdoors</option>
+      </select>
+
+    <p><h5>Your Review:</h5></p>
+    Wobbliness: <input type="text" name="wobble" /><br />
+    Content: <input type="text" name="content" /><br />
+    User: <input type="text" name="user_name" /><br />
+
+    <p><input type="submit" value="Submit Review" /></p>
+    </form>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+function reveal() {
+  var x = document.getElementById("form");
+  if (x.style.display === "none") {
+      x.style.display = "block";
+  } else {
+      x.style.display = "none";
+  }
+}
+</script>
 
 <div>
