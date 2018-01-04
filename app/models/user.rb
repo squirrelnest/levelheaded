@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :name, uniqueness: true
 
   def admin?
-    id < 10
+    name == 'admin'
   end
 
 end
