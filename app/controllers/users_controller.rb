@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         session[:id] = @user.id
         redirect '/users/reviews'
     else
-        flash[:message] = "Invalid username and/or password"
+        flash[:message] = "Username and password cannot be blank"
         redirect '/users/signup'
     end
   end
