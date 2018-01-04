@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   get '/users/home' do
-    @user = User.find(session[:id])
     erb :'/users/home'
   end
 
@@ -13,48 +12,32 @@ class UsersController < ApplicationController
     @user = User.new(name: params["username"], password: params["password"])
     @user.save
     session[:id] = @user.id
-    redirect '/users/home'
+    redirect '/users/reviews'
+  end
+
+  get '/users/reviews' do
+    @user = User.find(session[:id])
+    erb :'/users/reviews'
   end
 
   get '/users/login' do
     erb :'/users/login'
   end
 
-  # get '/users' do
-  #   @users = User.all
-  #   erb :'/users/index'
-  # end
-  #
-  # get '/users/new' do
-  #   erb :'/users/new'
-  # end
-  #
-  # post '/users/create' do
-  #   @user = User.create(user_params)
-  #   @user.save
-  #   redirect "/users/#{@user.id}"
-  # end
-  #
-  # get '/users/:id' do
-  #   @user = User.find(params[:id])
-  #   erb :'/users/show'
-  # end
-  #
-  # get '/users/:id/edit' do
-  #   @user = User.find(params[:id])
-  #   erb :'/users/edit'
-  # end
-  #
-  # patch '/users/:id' do
-  #   @user = User.find(params[:id])
-  #   @user.update(user_params)
-  #   redirect "/users/#{@user.id}"
-  # end
+  post '/users/session' do
+    @user = User.find_by(user_params)
+    session[:id] = @user.id
+  end
+
+  get '/users/logout' do
+    session.clear
+    erb :'users/logout'
+  end
 
   private
 
   def user_params
-    {name: params[:user][:name]}
+    {name: params["username"], password: params["password"]}
   end
 
 end
