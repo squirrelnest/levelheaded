@@ -1,5 +1,11 @@
 <% @chowtables.each do |chowtable| %>
   <% if chowtable.restaurant %>
-    <a href="<%= "/chowtables/#{chowtable.id}" %>"><%= chowtable.restaurant.name %> | Table number: <%= chowtable.number %></a> | Wobbliness: <%= chowtable.average %> | Reviews: <%= chowtable.reviews.count %> <a href="<%= "/chowtables/#{chowtable.id}/delete" %>"><button>Delete</button></a> <br />
+    <a href="<%= "/chowtables/#{chowtable.id}" %>">
+      <%= chowtable.restaurant.name %> | Table number: <%= chowtable.number %>
+    </a> | Wobbliness: <%= chowtable.average %> | Reviews: <%= chowtable.reviews.count %>
+    <% if @user && @user.admin? %>
+      <a href="<%= "/chowtables/#{chowtable.id}/delete" %>"><button>Delete</button></a>
+    <% end %>
+    <br />
   <% end %>
 <% end %>

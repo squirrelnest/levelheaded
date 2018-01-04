@@ -44,7 +44,9 @@ class ReviewsController < ApplicationController
 
   get '/reviews/:id/delete' do
     @review = Review.find(params[:id])
-    @review.delete_all
+    if session[:id] == @review.user.id
+      @review.delete
+    end
     redirect '/reviews'
   end
 

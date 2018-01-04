@@ -1,5 +1,10 @@
 <ul>
   <% @restaurants.each do |restaurant| %>
-    <li><a href="<%= "/restaurants/#{restaurant.id}" %>"><%= restaurant.name %></a> (Overall Wobbliness: <%= restaurant.wobbliness %>) <a href="<%= "/restaurants/#{restaurant.id}/delete" %>"><button>Delete</button></a></li>
+    <li><a href="<%= "/restaurants/#{restaurant.id}" %>"><%= restaurant.name %></a>
+      (Overall Wobbliness: <%= restaurant.wobbliness %>)
+      <% if @user && @user.admin? %>
+        <a href="<%= "/restaurants/#{restaurant.id}/delete" %>"><button>Delete</button></a>
+      <% end %>
+    </li>
   <% end %>
 </ul>

@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  def admin?
+    id < 10
+  end
+
 end
