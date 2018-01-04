@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   get '/users/home' do
+    @user = User.find_by(id: session[:id])
     erb :'/users/home'
   end
 
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
   post '/users/session' do
     @user = User.find_by(user_params)
     session[:id] = @user.id
+    redirect :'/users/reviews'
   end
 
   get '/users/logout' do
