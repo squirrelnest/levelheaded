@@ -19,9 +19,9 @@ Confirm
 - [x] You don't include changes in a commit that aren't related to the commit message
 
 To Do
-- [ ] Transform login to logout when user is logged in
+- [x] Transform login to logout when user is logged in
 - [ ] Attach logged in user to any reviews he/she writes
-- [ ] Clean up database to remove restaurant_id from users table
+- [x] Clean up database to remove restaurant_id from users table
 - [ ] Clean up database to remove invalid users (users without passwords or real, non-number names)
 - [ ] Add error messages
 - [ ] Validate: users have passwords and real, non-number names
