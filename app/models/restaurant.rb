@@ -6,7 +6,7 @@ class Restaurant < ActiveRecord::Base
   validates :phone, uniqueness: true
 
   def wobbliness
-    if self.chowtables.length > 0
+    if self.chowtables.count > 0
       sum = 0
       divisor = 0
       self.chowtables.each do |table|
@@ -15,7 +15,18 @@ class Restaurant < ActiveRecord::Base
           divisor += 1
         end
       end
-      sum / divisor
+      if sum > 0
+        sum / divisor
+      else
+        0
+      end
+    # else
+    #   self.chowtables.each do |table|
+    #     table.reviews.each do |review|
+    #       review.wobble
+    #     end
+    #   end
+    #   review.wobble
     end
   end
 

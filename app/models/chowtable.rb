@@ -11,7 +11,11 @@ class Chowtable < ActiveRecord::Base
       sum += review.wobble
       divisor += 1
     end
-    sum / divisor
+    if sum > 0
+      sum / divisor
+    else
+      0
+    end
   end
 
 end
