@@ -15,7 +15,6 @@
     <p><h5>Or add new table:</h5></p>
 
     Table Number: <input type="text" name="table_number"></input><br />
-
     Table Type:
     <select name="table_type">
       <option value="booth">booth</option>
@@ -25,8 +24,7 @@
       <option value="outdoors">outdoors</option>
     </select>
 
-    <p>
-    Select restaurant:
+    <p><h5>Select existing restaurant:</h5>
     <select name="restaurant_name" id="select_restaurant">
       <option label=" "></option>
       <% Restaurant.all.each do |restaurant| %>
@@ -35,7 +33,7 @@
     </select>
     </p>
 
-    <p>Create new restaurant:</p>
+    <p><h5>Or create new restaurant:</h5></p>
 
     Restaurant Name: <input type="text" name="restaurant_name" /><br />
     Restaurant Phone: <input type="text" name="restaurant_phone" /><br />
