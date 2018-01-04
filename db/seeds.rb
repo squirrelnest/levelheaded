@@ -15,9 +15,10 @@ e = Chowtable.create({restaurant: comal, number: 85, table_type: "window"})
 
 # Create users
 
-alice = User.create({name: "Alice", password: "Alice"})
-betty = User.create({name: "Betty", password: "Betty"})
-chris = User.create({name: "Chris", password: "Chris"})
+alice = User.create({name: "Alice", password_digest: "Alice"})
+betty = User.create({name: "Betty", password_digest: "Betty"})
+chris = User.create({name: "Chris", password_digest: "Chris"})
+admin = User.create({name: "Admin", password_digest: "Admin"})
 
 # Create reviews
 

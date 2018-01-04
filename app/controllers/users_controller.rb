@@ -10,9 +10,13 @@ class UsersController < ApplicationController
 
   post '/users/registration' do
     @user = User.new(name: params["username"], password: params["password"])
-    @user.save
-    session[:id] = @user.id
-    redirect '/users/reviews'
+    if @user
+        @user.save
+        session[:id] = @user.id
+        redirect '/users/reviews'
+    else
+        redirect '/failure'
+    end
   end
 
   get '/users/reviews' do
@@ -25,9 +29,13 @@ class UsersController < ApplicationController
   end
 
   post '/users/session' do
-    @user = User.find_by(user_params)
-    session[:id] = @user.id
-    redirect :'/users/reviews'
+    @user = User.find_by(name: params["username"])
+    if @user && @user.authenticate(params[:password])
+      session[:id] = @user.id
+      redirect '/users/reviews'
+    else
+      redirect '/failure'
+    end
   end
 
   get '/users/logout' do
@@ -35,12 +43,6 @@ class UsersController < ApplicationController
     session[:id] = nil
     erb :'users/logout'
     redirect '/users/home'
-  end
-
-  private
-
-  def user_params
-    {name: params["username"], password: params["password"]}
   end
 
 end

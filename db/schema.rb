@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104193058) do
+ActiveRecord::Schema.define(version: 20180104215241) do
 
   create_table "chowtables", force: :cascade do |t|
     t.integer "number"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180104193058) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "password"
+    t.string "password_digest"
   end
 
 end

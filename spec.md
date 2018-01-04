@@ -22,7 +22,7 @@ To Do
 - [x] Transform login to logout when user is logged in
 - [ ] Attach logged in user to any reviews he/she writes
 - [x] Clean up database to remove restaurant_id from users table
-- [ ] Clean up database to remove invalid users (users without passwords or real, non-number names)
+- [x] Clean up database to remove invalid users (users without passwords or real, non-number names)
 - [ ] Add error messages
 - [ ] Validate: users have passwords and real, non-number names
 
