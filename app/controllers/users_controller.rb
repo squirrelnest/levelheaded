@@ -32,7 +32,9 @@ class UsersController < ApplicationController
 
   get '/users/logout' do
     session.clear
+    session[:id] = nil
     erb :'users/logout'
+    redirect '/users/home'
   end
 
   private
