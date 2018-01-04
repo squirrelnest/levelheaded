@@ -1,4 +1,4 @@
-<% @chowtables.each do |chowtable| %>
+<% @chowtables.order('restaurant_id').each do |chowtable| %>
   <% if chowtable.restaurant %>
     <a href="<%= "/chowtables/#{chowtable.id}" %>">
       <%= chowtable.restaurant.name %> | Table number: <%= chowtable.number %>
