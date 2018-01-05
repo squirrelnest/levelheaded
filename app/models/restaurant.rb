@@ -4,6 +4,7 @@ class Restaurant < ActiveRecord::Base
   has_many :users
 
   validates :phone, uniqueness: true
+  validates :phone, numericality: true
 
   def wobbliness
     if self.chowtables.count > 0
@@ -20,13 +21,6 @@ class Restaurant < ActiveRecord::Base
       else
         0
       end
-    # else
-    #   self.chowtables.each do |table|
-    #     table.reviews.each do |review|
-    #       review.wobble
-    #     end
-    #   end
-    #   review.wobble
     end
   end
 

@@ -20,12 +20,12 @@ Confirm
 
 To Do
 - [x] Transform login to logout when user is logged in
-- [ ] Attach logged in user to any reviews he/she writes
+- [x] Attach logged in user to any reviews he/she writes
 - [x] Clean up database to remove restaurant_id from users table
 - [x] Clean up database to remove invalid users (users without passwords or real, non-number names)
 - [x] Add error messages
 - [x] Validate: users have passwords and real, non-number names
 
 Nice to Have
-- [ ] Security: Hash passwords
+- [x] Security: Hash passwords
 - [ ] Add admin column to users table

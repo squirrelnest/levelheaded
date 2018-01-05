@@ -5,7 +5,9 @@
       | Wobbliness # <%= review.wobble if review.wobble %>
       | "<%= review.content if review.content %>"
       | Date Created: <%= review.created_at.strftime('%B %e, %Y') if review.created_at %>
-      <a href="<%= "/reviews/#{review.id}/edit" %>"><button>Edit</button></a>
-      <a href="<%= "/reviews/#{review.id}/delete" %>"><button>Delete</button></a></li>
+      <% if review.user_id == session[:id] %>
+        <a href="<%= "/reviews/#{review.id}/edit" %>"><button>Edit</button></a>
+        <a href="<%= "/reviews/#{review.id}/delete" %>"><button>Delete</button></a></li>
+      <% end %>
   <% end %>
 </ul>

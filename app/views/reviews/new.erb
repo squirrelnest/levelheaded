@@ -4,7 +4,7 @@
   <form action="/reviews/create" method="post">
 
     <p><h5>Select existing table:</h5>
-      <select name="table_number" id="<%= "select_chowtable" %>">
+      <select name="table_id" id="<%= "select_chowtable" %>">
         <option label=" "></option>
         <% Chowtable.order('restaurant_id').each do |chowtable| %>
           <option value="<%= chowtable.id %>" id="<%= "#{chowtable.id}" %>" ><%= chowtable.restaurant.name if chowtable.restaurant %> <%= chowtable.number %></option>
@@ -17,6 +17,7 @@
     Table Number: <input type="text" name="table_number"></input><br />
     Table Type:
     <select name="table_type">
+      <option label=" "></option>
       <option value="booth">booth</option>
       <option value="communal">communal</option>
       <option value="private">private</option>
@@ -36,7 +37,7 @@
     <p><h5>Or create new restaurant:</h5></p>
 
     Restaurant Name: <input type="text" name="restaurant_name" /><br />
-    Restaurant Phone: <input type="text" name="restaurant_phone" /><br />
+    Restaurant Phone: <input type="text" name="restaurant_phone" pattern="[0-9]{1,15}" title="Phone should only contain numbers" /><br />
     Restaurant Address: <input type="text" name="street_address" placeholder="street address" /><input type="text" name="city" placeholder="city" /><input type="text" name="state" placeholder="state" /><input type="text" name="zipcode" placeholder="zipcode" /><br />
 
     <p><h5>Your review:</h5></p>

@@ -11,25 +11,23 @@ class ReviewsController < ApplicationController
 
   post '/reviews/create' do
     @review = Review.create(review_params)
-    @restaurant = Restaurant.find_by(phone: restaurant_params[:phone])
-    @restaurant ||= Restaurant.create(restaurant_params)
-    @review.restaurant = @restaurant
-    @chowtable = Chowtable.find_or_create_by(chowtable_params)
+    @review.user_id = session[:id]
+    @chowtable = Chowtable.find_by(id: params[:table_id])
+    @restaurant = Restaurant.find(@chowtable.restaurant_id)
+    unless @chowtable
+      @chowtable = Chowtable.create(chowtable_params)
+      @chowtable.save
+      unless @restaurant
+        @restaurant = Restaurant.create(restaurant_params)
+        @restaurant.save
+      end
+    end
     @chowtable.restaurant = @restaurant
+    @review.restaurant = @restaurant
     @review.chowtable = @chowtable
-    @user = User.find_or_create_by(session[:id])
-    @review.user = @user
-    @restaurant.save
-    @chowtable.save
-    @user.save
     @review.save
     redirect "/reviews"
   end
-
-  # get '/reviews/:id' do
-  #   @review = Review.find(params[:id])
-  #   erb :'/reviews/show'
-  # end
 
   get '/reviews/:id/edit' do
     @review = Review.find(params[:id])

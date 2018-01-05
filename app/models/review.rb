@@ -8,6 +8,6 @@ class Review < ActiveRecord::Base
   validates :wobble, numericality: true
   validates :wobble, inclusion: 0..5
 
-  validates :restaurant_id, presence: true
+  validates :chowtable_id, presence: true
 
 end
