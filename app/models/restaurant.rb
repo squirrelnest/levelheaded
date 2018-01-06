@@ -7,7 +7,7 @@ class Restaurant < ActiveRecord::Base
   validates :phone, numericality: true
 
   def wobbliness
-    Chowtable.joins(:reviews).where(restaurant_id: self.id).average(:wobble).round(1)
+    chowtables.joins(:reviews).average(:wobble).round(1)
     # if self.chowtables.count > 0
     #   sum = 0
     #   divisor = 0
