@@ -14,7 +14,7 @@
 
     <p><h5>Or add new table:</h5></p>
 
-    Table Number: <input type="text" name="table_number"></input><br />
+    Table Number: <input type="text" name="table_number" pattern="[0-9]+" title="Please enter a number"></input><br />
     Table Type:
     <select name="table_type">
       <option label=" "></option>
@@ -42,7 +42,7 @@
 
     <p><h5>Your review:</h5></p>
 
-    Wobbliness: <input type="text" name="wobble" /><br />
+    Wobbliness: <input type="text" name="wobble" pattern="[0-5]" title="Please enter a number between 0 and 5" required /><br />
     Content: <input type="text" name="content" /><br />
 
     <p><input type="submit" name="Create New Review" /></p>

@@ -35,7 +35,7 @@
       <p><h5>Your review:</h5></p>
       <input type="hidden" name="table_id" value="<%= @chowtable.id %>" />
 
-      Wobbliness: <input type="text" name="wobble" /><br />
+      Wobbliness: <input type="text" name="wobble" pattern="[0-5]" title="Please enter a number between 0 and 5" required /><br />
       Content: <input type="text" name="content" /><br />
 
       <p><input type="submit" value="Submit Review" /></p>

@@ -28,7 +28,6 @@
 
     <p><h5>New Table:</h5></p>
     <input type="hidden" name="restaurant_id" value="<%= @restaurant.id %>" />
-    <input type="hidden" name="restaurant_phone" value="<%= @restaurant.phone %>" />
     Table number: <input type="text" name="table_number" />
     Table type:
       <select name="table_type">
@@ -40,7 +39,7 @@
       </select>
 
     <p><h5>Your Review:</h5></p>
-    Wobbliness: <input type="text" name="wobble" /><br />
+    Wobbliness: <input type="text" name="wobble" pattern="[0-5]" title="Please enter a number between 0 and 5" required /><br />
     Content: <input type="text" name="content" /><br />
 
     <p><input type="submit" value="Submit Review" /></p>
