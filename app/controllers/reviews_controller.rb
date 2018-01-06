@@ -13,20 +13,30 @@ class ReviewsController < ApplicationController
     @review = Review.create(review_params)
     @review.user_id = session[:id]
     @chowtable = Chowtable.find_by(id: params[:table_id])
-    @restaurant = Restaurant.find(@chowtable.restaurant_id)
-    unless @chowtable
-      @chowtable = Chowtable.create(chowtable_params)
-      @chowtable.save
-      unless @restaurant
-        @restaurant = Restaurant.create(restaurant_params)
-        @restaurant.save
-      end
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+    # if chowtable exists, use its existing restaurant as @restaurant
+    if @chowtable
+      @restaurant = @chowtable.restaurant
     end
-    @chowtable.restaurant = @restaurant
-    @review.restaurant = @restaurant
+    # if chowtable doesn't exist but restaurant does, create new chowtable, attach it to existing restaurant, assign @restaurant
+    if @chowtable == nil && @restaurant
+      @chowtable = Chowtable.create(chowtable_params)
+      @chowtable.restaurant = @restaurant
+      @chowtable.save
+    end
+    # if neither chowtable nor restaurant exist, create new chowtable and new restaurant
+    if @chowtable == nil && @restaurant == nil
+      @restaurant = Restaurant.new(restaurant_params)
+      @restaurant.save
+      @chowtable = Chowtable.new(chowtable_params)
+      @chowtable.restaurant = @restaurant
+      @chowtable.save
+    end
+    # attach chowtable and restaurant to review
     @review.chowtable = @chowtable
+    @review.restaurant = @restaurant
     @review.save
-    redirect "/reviews"
+    redirect "/tables/#{@chowtable.id}"
   end
 
   get '/reviews/:id/edit' do
@@ -37,7 +47,7 @@ class ReviewsController < ApplicationController
   patch '/reviews/:id' do
     @review = Review.find(params[:id])
     @review.update(review_params)
-    redirect "/reviews"
+    redirect "/users/reviews"
   end
 
   get '/reviews/:id/delete' do
@@ -45,7 +55,7 @@ class ReviewsController < ApplicationController
     if session[:id] == @review.user.id
       @review.delete
     end
-    redirect '/reviews'
+    redirect '/users/reviews'
   end
 
   private
