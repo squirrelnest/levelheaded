@@ -33,9 +33,7 @@
     <div id="form" style="display:none;">
       <form action="/reviews/create" method="post">
       <p><h5>Your review:</h5></p>
-      <input type="hidden" name="restaurant_phone" value="<%= @chowtable.restaurant.phone %>" />
-      <input type="hidden" name="table_number" value="<%= @chowtable.number %>" />
-      <input type="hidden" name="table_type" value="<%= @chowtable.table_type %>" />
+      <input type="hidden" name="table_id" value="<%= @chowtable.id %>" />
 
       Wobbliness: <input type="text" name="wobble" /><br />
       Content: <input type="text" name="content" /><br />
