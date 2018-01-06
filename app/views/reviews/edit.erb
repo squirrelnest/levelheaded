@@ -3,8 +3,8 @@
   <form action="<%= "/reviews/#{@review.id}" %>" method="post">
     <input type="hidden" id="hidden" name="_method" value="patch" />
 
-    Wobbliness: <input type="text" name="wobble" placeholder=<%= @review.wobble %> /><br />
-    Content: <input type="text" name="content" placeholder="<%= @review.content %>" /><br />
+    Wobbliness: <input type="text" name="wobble" value=<%= @review.wobble %> /><br />
+    Content: <input type="text" name="content" value="<%= @review.content %>" /><br />
     <p>- <%= @review.user.name %> | Reviewed <%= @review.updated_at.strftime('%B %e, %Y') %></p>
 
     <input type="submit" name="Edit Review" />
