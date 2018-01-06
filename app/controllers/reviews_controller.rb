@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
     @review.chowtable = @chowtable
     @review.restaurant = @restaurant
     @review.save
-    redirect "/tables/#{@chowtable.id}"
+    redirect "/chowtables/#{@chowtable.id}"
   end
 
   get '/reviews/:id/edit' do
