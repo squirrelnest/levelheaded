@@ -26,7 +26,7 @@
     </select>
 
     <p><h5>Select existing restaurant:</h5>
-    <select name="restaurant_name" id="select_restaurant">
+    <select name="restaurant_id" id="select_restaurant">
       <option label=" "></option>
       <% Restaurant.all.each do |restaurant| %>
         <option value="<%= restaurant.id %>" id="<%= "#{restaurant.id}" %>" ><%= restaurant.name %></option>
