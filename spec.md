@@ -24,8 +24,8 @@ To Do
 - [x] Clean up database to remove restaurant_id from users table
 - [x] Clean up database to remove invalid users (users without passwords or real, non-number names)
 - [x] Add error messages
-  - [ ] Add error messages when wobbliness is out of range (negative, zero over, 5)
-  - [ ] Add error message when a table number is not an integer
+  - [x] Add error messages when wobbliness is out of range (negative, zero over, 5)
+  - [x] Add error message when a table number is not an integer
 - [x] Validate: users have passwords and real, non-number names
 
 Nice to Have
