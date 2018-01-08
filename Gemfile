@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'sinatra-partial', require: 'sinatra/partial'
 gem 'rack-flash3'
 gem 'bcrypt'
 gem 'sinatra-flash'

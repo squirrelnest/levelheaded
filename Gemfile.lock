@@ -88,6 +88,8 @@ GEM
       sinatra (>= 1.0)
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
+    sinatra-partial (1.0.1)
+      sinatra (>= 1.4)
     sinatra-twitter-bootstrap (2.3.4)
     sqlite3 (1.3.13)
     thin (1.7.2)
@@ -123,6 +125,7 @@ DEPENDENCIES
   sinatra
   sinatra-activerecord
   sinatra-flash
+  sinatra-partial
   sinatra-twitter-bootstrap
   sqlite3
   thin
