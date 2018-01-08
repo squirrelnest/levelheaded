@@ -14,9 +14,9 @@
     <% @chowtable.reviews.each do |review| %>
       <p>
       <% if review.wobble == 0 %>
-        Absolutely zero wobble!<br />
+        😁<br />
       <% else %>
-        <% review.wobble.times do %><%= '*' %><% end %><br />
+        <% review.wobble.times do %><%= '😩' %><% end %><br />
       <% end %>
       "<%= review.content %>"<br />
       - <%= review.user.name %> | Reviewed <%= review.created_at.strftime('%B %e, %Y') %>
