@@ -14,7 +14,7 @@
     <% @chowtable.reviews.each do |review| %>
       <p>
       <% if review.wobble == 0 %>
-        😁<br />
+        😁 zero wobble! <br />
       <% else %>
         <% review.wobble.times do %><%= '😩' %><% end %><br />
       <% end %>

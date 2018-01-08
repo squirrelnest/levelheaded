@@ -8,7 +8,11 @@
           <%= review.restaurant.name if review.restaurant.name %>
           | Table # <%= review.chowtable.number if review.chowtable.number %>
       <% end %>
-      | Wobbliness # <%= review.wobble if review.wobble %>
+      | <% if review.wobble == 0 %>
+          😁 zero wobble!
+        <% else %>
+          <% review.wobble.times do %><%= '😩' %><% end %>
+        <% end %>
       | "<%= review.content if review.content %>"
       | Date Created: <%= review.created_at.strftime('%B %e, %Y') if review.created_at %>
       <% if review.user_id == session[:id] || @user.admin? %>

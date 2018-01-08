@@ -46,14 +46,20 @@ class ReviewsController < ApplicationController
 
   patch '/reviews/:id' do
     @review = Review.find(params[:id])
-    @review.update(review_params)
+    if session[:id] == @review.user.id || @user.admin?
+      @review.update(review_params)
+    else
+      flash[:message] = "Can't touch this. It ain't yours."
+    end
     redirect "/users/reviews"
   end
 
   get '/reviews/:id/delete' do
     @review = Review.find(params[:id])
-    if session[:id] == @review.user.id
+    if session[:id] == @review.user.id || @user.admin?
       @review.delete
+    else
+      flash[:message] = "Can't touch this. It ain't yours."
     end
     redirect '/users/reviews'
   end

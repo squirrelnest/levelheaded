@@ -21,8 +21,10 @@
       <span><h1 style="display: inline;">Levelheaded</h1><h2 style="display: inline;"> (the review site for wobbly restaurant tables)</h2></span>
       <p><a href="/restaurants">RESTAURANTS</a>
         | <a href="/chowtables">TABLES</a>
-        <% if session[:id] %>
+        <% if session[:id] && !@user.admin? %>
           | <a href="/reviews/new">ADD REVIEW</a> | <a href="/users/reviews">YOUR REVIEWS</a> | <a href="/users/logout">LOGOUT</a>
+        <% elsif session[:id] && @user.admin? %>
+          | <a href="/reviews/new">ADD REVIEW</a> | <a href="/reviews">ALL REVIEWS</a> | <a href="/users/logout">LOGOUT</a>
         <% else %>
           | <a href="/users/login">LOGIN</a>
         <% end %>
