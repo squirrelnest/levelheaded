@@ -21,7 +21,11 @@ class UsersController < ApplicationController
   end
 
   get '/users/reviews' do
-    erb :'/users/reviews'
+    if @user.admin?
+      redirect '/reviews'
+    else
+      erb :'/users/reviews'
+    end
   end
 
   get '/users/login' do
