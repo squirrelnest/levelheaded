@@ -14,6 +14,8 @@ class ApplicationController < Sinatra::Base
   configure do
     enable :sessions
     set :session_secret, "secret"
+    register Sinatra::Partial
+    set :partial_template_engine, :erb
   end
 
 

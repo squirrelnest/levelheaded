@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     if @user.admin?
       redirect '/reviews'
     else
+      @reviews = @user.reviews
       erb :'/users/reviews'
     end
   end
