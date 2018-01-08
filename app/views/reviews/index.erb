@@ -1,11 +1,17 @@
 <ul>
   <% @reviews.order('restaurant_id').each do |review| %>
-    <li><%= review.restaurant.name if review.restaurant.name %>
-      | Table # <%= review.chowtable.number if review.chowtable.number %>
+    <li>
+      <% if @user.admin? %>
+          <%= Restaurant.find(review.restaurant_id).name %>
+          | Table # <%= Chowtable.find(review.chowtable_id).number %>
+        <% else %>
+          <%= review.restaurant.name if review.restaurant.name %>
+          | Table # <%= review.chowtable.number if review.chowtable.number %>
+      <% end %>
       | Wobbliness # <%= review.wobble if review.wobble %>
       | "<%= review.content if review.content %>"
       | Date Created: <%= review.created_at.strftime('%B %e, %Y') if review.created_at %>
-      <% if review.user_id == session[:id] %>
+      <% if review.user_id == session[:id] || @user.admin? %>
         <a href="<%= "/reviews/#{review.id}/edit" %>"><button>Edit</button></a>
         <a href="<%= "/reviews/#{review.id}/delete" %>"><button>Delete</button></a></li>
       <% end %>
