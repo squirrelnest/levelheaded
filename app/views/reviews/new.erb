@@ -7,7 +7,11 @@
       <select name="table_id" id="<%= "select_chowtable" %>">
         <option label=" "></option>
         <% Chowtable.order('restaurant_id').each do |chowtable| %>
-          <option value="<%= chowtable.id %>" id="<%= "#{chowtable.id}" %>" ><%= chowtable.restaurant.name if chowtable.restaurant %> <%= chowtable.number %></option>
+          <% if chowtable.restaurant == nil %>
+            <option disabled hidden style='display: none' value=''></option>
+          <% else %>
+            <option value="<%= chowtable.id %>" id="<%= "#{chowtable.id}" %>" ><%= chowtable.restaurant.name if chowtable.restaurant %> <%= chowtable.number %></option>
+          <% end %>
         <% end %>
       </select>
     </p>
