@@ -10,33 +10,37 @@ class ReviewsController < ApplicationController
   end
 
   post '/reviews/create' do
-    @review = Review.create(review_params)
-    @review.user_id = session[:id]
-    @chowtable = Chowtable.find_by(id: params[:table_id])
-    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
-    # if chowtable exists, use its existing restaurant as @restaurant
-    if @chowtable
-      @restaurant = @chowtable.restaurant
+    if @user == nil
+      redirect '/users/login'
+    else
+      @review = Review.create(review_params)
+      @review.user_id = session[:id]
+      @chowtable = Chowtable.find_by(id: params[:table_id])
+      @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+      # if chowtable exists, use its existing restaurant as @restaurant
+      if @chowtable
+        @restaurant = @chowtable.restaurant
+      end
+      # if chowtable doesn't exist but restaurant does, create new chowtable, attach it to existing restaurant, assign @restaurant
+      if @chowtable == nil && @restaurant
+        @chowtable = Chowtable.create(chowtable_params)
+        @chowtable.restaurant = @restaurant
+        @chowtable.save
+      end
+      # if neither chowtable nor restaurant exist, create new chowtable and new restaurant
+      if @chowtable == nil && @restaurant == nil
+        @restaurant = Restaurant.new(restaurant_params)
+        @restaurant.save
+        @chowtable = Chowtable.new(chowtable_params)
+        @chowtable.restaurant = @restaurant
+        @chowtable.save
+      end
+      # attach chowtable and restaurant to review
+      @review.chowtable = @chowtable
+      @review.restaurant = @restaurant
+      @review.save
+      redirect "/chowtables/#{@chowtable.id}"
     end
-    # if chowtable doesn't exist but restaurant does, create new chowtable, attach it to existing restaurant, assign @restaurant
-    if @chowtable == nil && @restaurant
-      @chowtable = Chowtable.create(chowtable_params)
-      @chowtable.restaurant = @restaurant
-      @chowtable.save
-    end
-    # if neither chowtable nor restaurant exist, create new chowtable and new restaurant
-    if @chowtable == nil && @restaurant == nil
-      @restaurant = Restaurant.new(restaurant_params)
-      @restaurant.save
-      @chowtable = Chowtable.new(chowtable_params)
-      @chowtable.restaurant = @restaurant
-      @chowtable.save
-    end
-    # attach chowtable and restaurant to review
-    @review.chowtable = @chowtable
-    @review.restaurant = @restaurant
-    @review.save
-    redirect "/chowtables/#{@chowtable.id}"
   end
 
   get '/reviews/:id/edit' do

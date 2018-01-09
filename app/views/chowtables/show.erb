@@ -20,7 +20,7 @@
       <% end %>
       "<%= review.content %>"<br />
       - <%= review.user.name %> | Reviewed <%= review.created_at.strftime('%B %e, %Y') %>
-      <% if review.user_id == session[:id] || @user.admin? %>
+      <% if review.user_id == session[:id] || (@user && @user.admin?) %>
         <a href="<%= "/reviews/#{review.id}/edit" %>"><button>Edit</button></a>
         <a href="<%= "/reviews/#{review.id}/delete" %>"><button>Delete</button></a>
       <% end %>
