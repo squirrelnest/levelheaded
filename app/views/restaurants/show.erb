@@ -12,7 +12,7 @@
 <p>Tables:
   <ul>
   <% @restaurant.chowtables.each do |table| %>
-    <li><a href="<%= "/chowtables/#{table.id}" %>">Table # <%= table.number %> | Wobbliness: <%= table.average %></a></li>
+    <li><a href="<%= "/chowtables/#{table.id}" %>">Table # <%= table.number %> | Wobbliness: <%= table.average == nil ? 'No reviews yet' : table.average %></a></li>
   <% end %>
   </ul>
 </p>

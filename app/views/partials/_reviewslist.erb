@@ -1,7 +1,7 @@
 <ul>
 
   <% if @user.admin? %>
-  
+
     <% @reviews.order('restaurant_id').each do |review| %>
       <li>
         <%= Restaurant.find(review.restaurant_id).name %>
@@ -23,7 +23,19 @@
   <% else %>
 
     <% @user.reviews.order('restaurant_id').each do |review| %>
-      <li><%= review.restaurant.name if review.restaurant.name %> | Table # <%= review.chowtable.number if review.chowtable.number %> | Wobbliness # <%= review.wobble if review.wobble %> | "<%= review.content if review.content %>" | Date Created: <%= review.created_at.strftime('%B %e, %Y') if review.created_at %> <a href="<%= "/reviews/#{review.id}/edit" %>"><button>Edit</button></a><a href="<%= "/reviews/#{review.id}/delete" %>"><button>Delete</button></a></li>
+      <li>
+        <%= review.restaurant.name %>
+        | Table # <%= review.chowtable.number %>
+        | <% if review.wobble == 0 %>
+            😁 zero wobble!
+          <% else %>
+            <% review.wobble.times do %><%= '😩' %><% end %>
+          <% end %>
+        | "<%= review.content if review.content %>"
+        | Date Created: <%= review.created_at.strftime('%B %e, %Y') %>
+        <a href="<%= "/reviews/#{review.id}/edit" %>"><button>Edit</button></a>
+        <a href="<%= "/reviews/#{review.id}/delete" %>"><button>Delete</button></a>
+      </li>
     <% end %>
 
   <% end %>

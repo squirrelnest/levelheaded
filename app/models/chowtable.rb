@@ -5,7 +5,11 @@ class Chowtable < ActiveRecord::Base
   has_many :users, through: :reviews
 
   def average
-    reviews.average(:wobble).round(1)
+    if self.reviews.count == 0
+      return nil;
+    else
+      reviews.average(:wobble).round(1)
+    end
     # sum = 0
     # divisor = 0
     # self.reviews.each do |review|
