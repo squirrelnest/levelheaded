@@ -30,10 +30,14 @@
 
   <!-- Add Review  -->
 
+
+
   <div>
 
-    <input type="button" value="Add Review" id="reveal" onClick="reveal();" />
-
+    <% if @user %>
+      <input type="button" value="Add Review" id="reveal" onClick="reveal();" />
+    <% end %>
+    
     <div id="form" style="display:none;">
       <form action="/reviews/create" method="post">
       <p><h5>Your review:</h5></p>
