@@ -5,10 +5,14 @@ class ChowtablesController < ApplicationController
     erb :'/chowtables/index'
   end
 
-  get '/chowtables/:id/delete' do
+  delete '/chowtables/:id' do
     @chowtable = Chowtable.find(params[:id])
-    @chowtable.delete
-    redirect '/chowtables'
+    if @user.admin?
+      @chowtable.delete
+      redirect '/chowtables'
+    else
+      redirect '/chowtables'
+    end
   end
 
   get '/chowtables/:id' do

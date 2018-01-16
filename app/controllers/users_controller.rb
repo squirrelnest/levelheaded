@@ -10,8 +10,7 @@ class UsersController < ApplicationController
 
   post '/users/registration' do
     @user = User.new(name: params["username"], password: params["password"])
-    if @user
-        @user.save
+    if @user.save
         session[:id] = @user.id
         redirect '/users/reviews'
     else

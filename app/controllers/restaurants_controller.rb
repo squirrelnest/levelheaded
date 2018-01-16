@@ -31,10 +31,15 @@ class RestaurantsController < ApplicationController
   #   redirect "/restaurants/#{@restaurant.id}"
   # end
 
-  get '/restaurants/:id/delete' do
+  delete '/restaurants/:id' do
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.delete
-    redirect "/restaurants"
+    if @user.admin?
+      @restaurant.delete
+      redirect "/restaurants"
+    else
+      flash[:message] = "Only admins can delete a restaurant."
+      redirect "/restaurants"
+    end
   end
 
   private

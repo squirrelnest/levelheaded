@@ -32,3 +32,4 @@ Nice to Have
 - [x] Security: Hash passwords
 - [ ] Add admin column to users table
 - [x] Redirect back to table page after posting a review
+- [ ] When mobile app is created, disallow human-generated readings and change wobble data type to :float.
